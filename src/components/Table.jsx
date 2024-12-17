@@ -13,7 +13,7 @@ const Table = ({ data }) => (
         <tr key={review.id}>
           <td>{review.platform}</td>
           <td>{review.rating}</td>
-          <td>{review.date}</td>
+          <td>{new Date(review.date).toLocaleString()}</td>
           <td>{review.text}</td>
         </tr>
       ))}
