@@ -71,6 +71,12 @@ const App = () => {
     setSortedReviews(filtered);
   };
 
+  const resetFilters = () => {
+    setPlatformFilter('');
+    setRatingRange({ min: 0, max: 5 });
+    setSortedReviews([...reviews]);
+  };
+
   return (
     <div className="container my-4">
       <h1 className="text-center mb-4">Reviews</h1>
@@ -78,7 +84,7 @@ const App = () => {
       {error && <div className="alert alert-danger">Error: {error}</div>}
       {!loading && !error && (
         <>
-          <div className="d-flex justify-content-between align-items-center mb-3">
+          <div className="d-flex justify-content-between align-items-end mb-3">
             <div className="me-3">
               <label htmlFor="platformFilter" className="form-label">
                 Platform:
@@ -132,9 +138,14 @@ const App = () => {
                 />
               </div>
             </div>
-            <button className="btn btn-primary" onClick={handleFilters}>
-              Apply filters
-            </button>
+            <div className="d-flex">
+              <button className="btn btn-primary me-2" onClick={handleFilters}>
+                Apply filters
+              </button>
+              <button className="btn btn-secondary" onClick={resetFilters}>
+                Reset filters
+              </button>
+            </div>
           </div>
           <ReviewsTable
             data={sortedReviews}
