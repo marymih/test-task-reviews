@@ -77,6 +77,37 @@ const App = () => {
     setSortedReviews([...reviews]);
   };
 
+  const handleMinRatingChange = (e) => {
+    const value = e.target.value;
+    if (value === '') {
+      setRatingRange((prev) => ({ ...prev, min: '' }));
+      return;
+    }
+    setRatingRange((prev) => ({
+      ...prev,
+      min: Math.max(0, Math.min(5, parseInt(value, 10))),
+    }));
+  };
+
+  const handleMaxRatingChange = (e) => {
+    const value = e.target.value;
+    if (value === '') {
+      setRatingRange((prev) => ({ ...prev, max: '' }));
+      return;
+    }
+    setRatingRange((prev) => ({
+      ...prev,
+      max: Math.max(0, Math.min(5, parseInt(value, 10))),
+    }));
+  };
+
+  const normalizeRating = (key) => {
+    setRatingRange((prev) => ({
+      ...prev,
+      [key]: prev[key] === '' ? 0 : prev[key],
+    }));
+  };
+
   return (
     <div className="container my-4">
       <h1 className="text-center mb-4">Reviews</h1>
@@ -107,13 +138,9 @@ const App = () => {
                   id="minRating"
                   type="number"
                   className="form-control"
-                  value={ratingRange.min}
-                  onChange={(e) =>
-                    setRatingRange((prev) => ({
-                      ...prev,
-                      min: Number(e.target.value),
-                    }))
-                  }
+                  value={ratingRange.min === '' ? '' : ratingRange.min}
+                  onChange={handleMinRatingChange}
+                  onBlur={() => normalizeRating('min')}
                   min="0"
                   max="5"
                 />
@@ -126,13 +153,9 @@ const App = () => {
                   id="maxRating"
                   type="number"
                   className="form-control"
-                  value={ratingRange.max}
-                  onChange={(e) =>
-                    setRatingRange((prev) => ({
-                      ...prev,
-                      max: Number(e.target.value),
-                    }))
-                  }
+                  value={ratingRange.max === '' ? '' : ratingRange.max}
+                  onChange={handleMaxRatingChange}
+                  onBlur={() => normalizeRating('max')}
                   min="0"
                   max="5"
                 />
