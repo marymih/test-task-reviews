@@ -87,7 +87,7 @@ const App = () => {
                 id="authorFilter"
                 type="text"
                 className="form-control"
-                placeholder="Введите имя автора"
+                placeholder="Enter the platform name"
                 value={platformFilter}
                 onChange={(e) => setPlatformFilter(e.target.value)}
               />
@@ -95,7 +95,7 @@ const App = () => {
             <div className="d-flex">
               <div className="me-3">
                 <label htmlFor="minRating" className="form-label">
-                  Рейтинг от:
+                  Min rating:
                 </label>
                 <input
                   id="minRating"
@@ -114,7 +114,7 @@ const App = () => {
               </div>
               <div>
                 <label htmlFor="maxRating" className="form-label">
-                  Рейтинг до:
+                  Max rating:
                 </label>
                 <input
                   id="maxRating"
