@@ -10,6 +10,9 @@ const App = () => {
   const [sortedReviews, setSortedReviews] = useState([]);
   const [sortOrder, setSortOrder] = useState({ key: '', direction: '' });
 
+  const [platformFilter, setPlatformFilter] = useState('');
+  const [ratingRange, setRatingRange] = useState({ min: 0, max: 5 });
+
   useEffect(() => {
     dispatch(fetchReviewsRequest());
   }, [dispatch]);
@@ -53,17 +56,92 @@ const App = () => {
     setSortOrder({ key, direction });
   };
 
+  //filtering function
+  const handleFilters = () => {
+    const filtered = reviews.filter((review) => {
+      const matchesPlatform = platformFilter
+        ? review.platform.toLowerCase().includes(platformFilter.toLowerCase())
+        : true;
+
+      const matchesRating =
+        review.rating >= ratingRange.min && review.rating <= ratingRange.max;
+
+      return matchesPlatform && matchesRating;
+    });
+    setSortedReviews(filtered);
+  };
+
   return (
     <div className="container my-4">
       <h1 className="text-center mb-4">Reviews</h1>
       {loading && <div className="alert alert-info">Loading...</div>}
       {error && <div className="alert alert-danger">Error: {error}</div>}
       {!loading && !error && (
-        <ReviewsTable
-          data={sortedReviews}
-          onSort={handleSort}
-          sortOrder={sortOrder}
-        />
+        <>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <div className="me-3">
+              <label htmlFor="platformFilter" className="form-label">
+                Platform:
+              </label>
+              <input
+                id="authorFilter"
+                type="text"
+                className="form-control"
+                placeholder="Введите имя автора"
+                value={platformFilter}
+                onChange={(e) => setPlatformFilter(e.target.value)}
+              />
+            </div>
+            <div className="d-flex">
+              <div className="me-3">
+                <label htmlFor="minRating" className="form-label">
+                  Рейтинг от:
+                </label>
+                <input
+                  id="minRating"
+                  type="number"
+                  className="form-control"
+                  value={ratingRange.min}
+                  onChange={(e) =>
+                    setRatingRange((prev) => ({
+                      ...prev,
+                      min: Number(e.target.value),
+                    }))
+                  }
+                  min="0"
+                  max="5"
+                />
+              </div>
+              <div>
+                <label htmlFor="maxRating" className="form-label">
+                  Рейтинг до:
+                </label>
+                <input
+                  id="maxRating"
+                  type="number"
+                  className="form-control"
+                  value={ratingRange.max}
+                  onChange={(e) =>
+                    setRatingRange((prev) => ({
+                      ...prev,
+                      max: Number(e.target.value),
+                    }))
+                  }
+                  min="0"
+                  max="5"
+                />
+              </div>
+            </div>
+            <button className="btn btn-primary" onClick={handleFilters}>
+              Apply filters
+            </button>
+          </div>
+          <ReviewsTable
+            data={sortedReviews}
+            onSort={handleSort}
+            sortOrder={sortOrder}
+          />
+        </>
       )}
     </div>
   );
