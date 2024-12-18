@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "platform": "Google",
+    "rating": 4,
+    "date": "2023-11-15T10:00:00Z",
+    "text": "Excellent service!"
+  },
+  {
+    "id": 2,
+    "platform": "Yandex",
+    "rating": 3,
+    "date": "2023-11-14T09:00:00Z",
+    "text": "Good, but there are some disadvantages."
+  },
+  {
+    "id": 3,
+    "platform": "2GIS",
+    "rating": 5,
+    "date": "2023-11-13T08:00:00Z",
+    "text": "Wonderful!"
+  },
+  {
+    "id": 4,
+    "platform": "Google",
+    "rating": 5,
+    "date": "2023-11-15T10:00:00Z",
+    "text": "Outstanding experience!"
+  },
+  {
+    "id": 5,
+    "platform": "Yandex",
+    "rating": 2,
+    "date": "2023-11-14T09:00:00Z",
+    "text": "Could be better."
+  },
+  {
+    "id": 6,
+    "platform": "Google",
+    "rating": 4,
+    "date": "2023-11-13T08:00:00Z",
+    "text": "Very good!"
+  }
+]
