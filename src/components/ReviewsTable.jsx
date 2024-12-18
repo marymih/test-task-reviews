@@ -1,22 +1,21 @@
 const ReviewsTable = ({ data, onSort, sortOrder }) => {
+  const getSortSymbol = (key) => {
+    if (sortOrder.key === key) {
+      return sortOrder.direction === 'asc' ? '▲' : '▼';
+    }
+    return '⇅';
+  };
+
   return (
     <table className="table table-striped table-hover">
       <thead className="thead-dark">
         <tr>
-          <th onClick={() => onSort('platform')} style={{ cursor: 'pointer' }}>
-            Platform{' '}
-            {sortOrder.key === 'platform' &&
-              (sortOrder.direction === 'asc' ? '▲' : '▼')}
-          </th>
+          <th>Platform</th>
           <th onClick={() => onSort('rating')} style={{ cursor: 'pointer' }}>
-            Rating{' '}
-            {sortOrder.key === 'rating' &&
-              (sortOrder.direction === 'asc' ? '▲' : '▼')}
+            Rating {getSortSymbol('rating')}
           </th>
           <th onClick={() => onSort('date')} style={{ cursor: 'pointer' }}>
-            Time{' '}
-            {sortOrder.key === 'date' &&
-              (sortOrder.direction === 'asc' ? '▲' : '▼')}
+            Time {getSortSymbol('date')}
           </th>
           <th>Review</th>
         </tr>
