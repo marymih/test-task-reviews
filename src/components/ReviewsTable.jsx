@@ -1,19 +1,19 @@
-const Table = ({ data, onSort, sortOrder }) => {
+const ReviewsTable = ({ data, onSort, sortOrder }) => {
   return (
-    <table>
-      <thead>
+    <table className="table table-striped table-hover">
+      <thead className="thead-dark">
         <tr>
-          <th onClick={() => onSort('platform')}>
+          <th onClick={() => onSort('platform')} style={{ cursor: 'pointer' }}>
             Platform{' '}
             {sortOrder.key === 'platform' &&
               (sortOrder.direction === 'asc' ? '▲' : '▼')}
           </th>
-          <th onClick={() => onSort('rating')}>
+          <th onClick={() => onSort('rating')} style={{ cursor: 'pointer' }}>
             Rating{' '}
             {sortOrder.key === 'rating' &&
               (sortOrder.direction === 'asc' ? '▲' : '▼')}
           </th>
-          <th onClick={() => onSort('date')}>
+          <th onClick={() => onSort('date')} style={{ cursor: 'pointer' }}>
             Time{' '}
             {sortOrder.key === 'date' &&
               (sortOrder.direction === 'asc' ? '▲' : '▼')}
@@ -35,4 +35,4 @@ const Table = ({ data, onSort, sortOrder }) => {
   );
 };
 
-export default Table;
+export default ReviewsTable;

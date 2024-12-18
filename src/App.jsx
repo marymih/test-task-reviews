@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchReviewsRequest } from './redux/reviewsSlice';
-import Table from './components/Table';
+import ReviewsTable from './components/ReviewsTable';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -54,12 +54,16 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Reviews</h1>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+    <div className="container my-4">
+      <h1 className="text-center mb-4">Reviews</h1>
+      {loading && <div className="alert alert-info">Loading...</div>}
+      {error && <div className="alert alert-danger">Error: {error}</div>}
       {!loading && !error && (
-        <Table data={sortedReviews} onSort={handleSort} sortOrder={sortOrder} />
+        <ReviewsTable
+          data={sortedReviews}
+          onSort={handleSort}
+          sortOrder={sortOrder}
+        />
       )}
     </div>
   );
