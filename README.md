@@ -1,9 +1,18 @@
 # View Reviews App
 
-Second test task for a frontend developer as part of the Hexlet and Habr Carreer challenge.
+Second test task for a frontend developer as part of the Hexlet and Habr Career challenge.
 
 ## Description
 A single-page application that displays a list of reviews for a company. Users can filter and sort the reviews.
+
+## Key Features
+
+- **React:**  
+  Uses functional components with hooks.  
+- **State Management:**  
+  Uses **Redux and redux-saga** for efficient state management for handling reviews, filtering, and sorting.
+- **Frontend logic:**  
+  All filtering and sorting operations are handled client-side.
 
 ## Functionality
 
